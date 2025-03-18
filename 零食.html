@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>零食售卖网站</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 使用Flexbox并设置flex-wrap属性来控制换行 */
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            /* 控制项目之间的间距 */
+        }
+
+        .product-item {
+            border: 1px solid #169b73;
+            /* background-color: rgb(206, 159, 77); */
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex: 1 1 48%;
+            /* 让每个item占据大约一半的宽度，留出一些空间给gap */
+            box-sizing: border-box;
+            /* 确保padding和border包含在元素的宽度内 */
+            min-width: 200px;
+            /* 设置最小宽度，防止在小屏幕上变得太窄 */
+        }
+
+        .product-image {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
+        .add-to-cart {
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #5a1d1d;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1275a6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>欢迎来到零食售卖网站</h1>
+
+    <div id="products">
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG82.jpg" alt="辣条" class="product-image">
+            <div>
+                <h3>辣条</h3>
+                <p>价格: ￥3</p>
+                <label for="quantity-latiao">数量:</label>
+                <input type="number" id="quantity-latiao" value="1" min="1">
+                <button onclick="addToCart(1, document.getElementById('quantity-latiao').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-1">0</span></p>
+            </div>
+        </div>
+        <!-- 其他产品类似地添加 -->
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG83.jpg" alt="干脆面" class="product-image">
+            <div>
+                <h3>干脆面</h3>
+                <p>价格: ￥3</p>
+                <label for="quantity-gancuimian">数量:</label>
+                <input type="number" id="quantity-gancuimian" value="1" min="1">
+                <button onclick="addToCart(2, document.getElementById('quantity-gancuimian').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-2">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG79.jpg" alt="面包" class="product-image">
+            <div>
+                <h3>面包</h3>
+                <p>价格: ￥4</p>
+                <label for="quantity-mianbao">数量:</label>
+                <input type="number" id="quantity-mianbao" value="1" min="1">
+                <button onclick="addToCart(3, document.getElementById('quantity-mianbao').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-3">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG78.jpg" alt="巧克力" class="product-image">
+            <div>
+                <h3>巧克力</h3>
+                <p>价格: ￥5</p>
+                <label for="quantity-qiaokeli">数量:</label>
+                <input type="number" id="quantity-qiaokeli" value="1" min="1">
+                <button onclick="addToCart(4, document.getElementById('quantity-qiaokeli').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-4">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG80.jpg" alt="饮料" class="product-image">
+            <div>
+                <h3>饮料</h3>
+                <p>价格: ￥6</p>
+                <label for="quantity-yinliao">数量:</label>
+                <input type="number" id="quantity-yinliao" value="1" min="1">
+                <button onclick="addToCart(5, document.getElementById('quantity-yinliao').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-5">0</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>购物车</h2>
+    <table id="cart">
+        <thead>
+            <tr>
+                <th>商品名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>总价</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 购物车内容将通过JavaScript动态添加 -->
+        </tbody>
+    </table>
+    <p>总价: ￥<span id="total-price">0</span></p>
+    <!-- 用户提交订单的表单 -->
+    <form action="/submit-order" method="post">
+        <!-- 用户信息输入 -->
+        <label for="name">姓名:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">电子邮件:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <!-- 购物车内容作为隐藏字段 -->
+        <input type="hidden" id="cartData" name="cartData">
+
+        <button type="submit">提交订单</button>
+    </form>
+    <script>
+        let cart = [];
+
+        function addToCart(id, quantity) {
+            const products = [
+                { id: 1, name: '辣条', price: 3 },
+                { id: 2, name: '干脆面', price: 1 },
+                { id: 3, name: '面包', price: 3 },
+                { id: 4, name: '巧克力', price: 6 },
+                { id: 5, name: '饮料', price: 2 }
+            ];
+            const item = products.find(p => p.id === parseInt(id));
+            const existingItem = cart.find(c => c.id === item.id);
+
+            if (existingItem) {
+                existingItem.quantity += parseInt(quantity);
+            } else {
+                cart.push({ ...item, quantity: parseInt(quantity) });
+            }
+
+            // 更新已加入购物车数量显示
+            document.getElementById(`added-quantity-${id}`).textContent = cart.find(c => c.id === id).quantity;
+            renderCart();
+        }
+
+        function renderCart() {
+            const tbody = document.querySelector('#cart tbody');
+            tbody.innerHTML = '';
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>￥${item.price}</td>
+                    <td>${item.quantity}</td>
+                    <td>￥${item.price * item.quantity}</td>
+                `;
+                tbody.appendChild(tr);
+                totalPrice += item.price * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+        document.querySelector('form').addEventListener('submit', function () {
+            document.getElementById('cartData').value = JSON.stringify(cart);
+        });
+    </script>
+
+</body>
+
+</html>
