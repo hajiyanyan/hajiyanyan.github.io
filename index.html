@@ -7,6 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url(/Users/ouyang/Desktop/WechatIMG207.jpg);
+            /* background: rgba(0, 0, 0, 0.3);  */
         }
 
         /* 使用Flexbox并设置flex-wrap属性来控制换行 */
@@ -18,6 +20,9 @@
         }
 
         .product-item {
+            background-image: url(/Users/ouyang/Desktop/WechatIMG207.jpg);
+            width: 300px;
+            height: 300px;
             border: 1px solid #169b73;
             /* background-color: rgb(206, 159, 77); */
             padding: 10px;
@@ -32,7 +37,8 @@
         }
 
         .product-image {
-            max-width: 100px;
+            max-width: 150px;
+            max-height: 150px;
             margin-right: 20px;
         }
 
@@ -53,15 +59,15 @@
             text-align: left;
         }
 
-        th {
-            background-color: #1275a6;
+        .shopcar {
+            background-color: #45d5e8;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>欢迎来到零食售卖网站</h1>
+    <h1 style="text-align:center;">欢迎来到零食售卖网站</h1>
 
     <div id="products">
         <div class="product-item">
@@ -120,12 +126,67 @@
                 <p>已加入购物车数量: <span id="added-quantity-5">0</span></p>
             </div>
         </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG80.jpg" alt="麻将辣条" class="product-image">
+            <div>
+                <h3>麻将辣条</h3>
+                <p>价格: ￥1.5</p>
+                <label for="quantity-yinliao">数量:</label>
+                <input type="number" id="quantity-majianglatiao" value="1" min="1">
+                <button onclick="addToCart(6, document.getElementById('quantity-majianglatiao').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-6">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG80.jpg" alt="青梅绿茶" class="product-image">
+            <div>
+                <h3>青梅绿茶</h3>
+                <p>价格: ￥3</p>
+                <label for="quantity-qmlc">数量:</label>
+                <input type="number" id="quantity-qmlc" value="1" min="1">
+                <button onclick="addToCart(7, document.getElementById('quantity-qmlc').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-7">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG80.jpg" alt="优酸乳" class="product-image">
+            <div>
+                <h3>优酸乳</h3>
+                <p>价格: ￥2</p>
+                <label for="quantity-ysr">数量:</label>
+                <input type="number" id="quantity-ysr" value="1" min="1">
+                <button onclick="addToCart(8, document.getElementById('quantity-ysr').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-8">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG80.jpg" alt="旺旺小馒头" class="product-image">
+            <div>
+                <h3>旺旺小馒头</h3>
+                <p>价格: ￥2.5</p>
+                <label for="quantity-wwxmt">数量:</label>
+                <input type="number" id="quantity-wwxmt" value="1" min="1">
+                <button onclick="addToCart(9, document.getElementById('quantity-wwxmt').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-9">0</span></p>
+            </div>
+        </div>
+        <div class="product-item">
+            <img src="/Users/ouyang/Desktop/WechatIMG80.jpg" alt="锅巴" class="product-image">
+            <div>
+                <h3>锅巴</h3>
+                <p>价格: ￥1</p>
+                <label for="quantity-gb">数量:</label>
+                <input type="number" id="quantity-gb" value="1" min="1">
+                <button onclick="addToCart(10, document.getElementById('quantity-gb').value)">添加到购物车</button>
+                <p>已加入购物车数量: <span id="added-quantity-10">0</span></p>
+            </div>
+        </div>
 
     </div>
 
     <h2>购物车</h2>
     <table id="cart">
-        <thead>
+        <thead class="shopcar">
             <tr>
                 <th>商品名称</th>
                 <th>单价</th>
@@ -133,7 +194,7 @@
                 <th>总价</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="shopcar">
             <!-- 购物车内容将通过JavaScript动态添加 -->
         </tbody>
     </table>
@@ -144,8 +205,8 @@
         <label for="name">姓名:</label>
         <input type="text" id="name" name="name" required><br>
 
-        <label for="email">电子邮件:</label>
-        <input type="email" id="email" name="email" required><br>
+        <label for="address">宿舍(例:雅6 501):</label>
+        <input type="address" id="address" name="address" required><br>
 
         <!-- 购物车内容作为隐藏字段 -->
         <input type="hidden" id="cartData" name="cartData">
@@ -161,7 +222,12 @@
                 { id: 2, name: '干脆面', price: 1 },
                 { id: 3, name: '面包', price: 3 },
                 { id: 4, name: '巧克力', price: 6 },
-                { id: 5, name: '饮料', price: 2 }
+                { id: 5, name: '饮料', price: 2 },
+                { id: 6, name: '麻将辣条', price: 1.5 },
+                { id: 7, name: '青梅绿茶', price: 3 },
+                { id: 8, name: '优酸乳', price: 2 },
+                { id: 9, name: '旺旺小馒头', price: 2.5 },
+                { id: 10, name: '锅巴', price: 1 }
             ];
             const item = products.find(p => p.id === parseInt(id));
             const existingItem = cart.find(c => c.id === item.id);
