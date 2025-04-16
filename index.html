@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url(/Users/ouyang/Desktop/WechatIMG207.jpg);
+            background-image: url(/Users/ouyang/Desktop/WechatIMG96.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
             /* background: rgba(0, 0, 0, 0.3);  */
         }
 
@@ -20,7 +22,9 @@
         }
 
         .product-item {
-            background-image: url(/Users/ouyang/Desktop/WechatIMG207.jpg);
+            background-image: url(/Users/ouyang/Desktop/WechatIMG96.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
             width: 300px;
             height: 300px;
             border: 1px solid #169b73;
@@ -62,12 +66,31 @@
         .shopcar {
             background-color: #45d5e8;
         }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+        }
     </style>
 </head>
 
 <body>
 
-    <h1 style="text-align:center;">欢迎来到零食售卖网站</h1>
+    <h1 style="text-align:center;">欢迎来到501零食小屋</h1>
 
     <div id="products">
         <div class="product-item">
@@ -75,8 +98,12 @@
             <div>
                 <h3>辣条</h3>
                 <p>价格: ￥3</p>
-                <label for="quantity-latiao">数量:</label>
-                <input type="number" id="quantity-latiao" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(1, -1)">-</button>
+                    <input type="number" id="quantity-latiao" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(1, 1)">+</button>
+                </div>
                 <button onclick="addToCart(1, document.getElementById('quantity-latiao').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-1">0</span></p>
             </div>
@@ -87,8 +114,12 @@
             <div>
                 <h3>干脆面</h3>
                 <p>价格: ￥3</p>
-                <label for="quantity-gancuimian">数量:</label>
-                <input type="number" id="quantity-gancuimian" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(2, -1)">-</button>
+                    <input type="number" id="quantity-gancuimian" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(2, 1)">+</button>
+                </div>
                 <button onclick="addToCart(2, document.getElementById('quantity-gancuimian').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-2">0</span></p>
             </div>
@@ -98,8 +129,12 @@
             <div>
                 <h3>面包</h3>
                 <p>价格: ￥4</p>
-                <label for="quantity-mianbao">数量:</label>
-                <input type="number" id="quantity-mianbao" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(3, -1)">-</button>
+                    <input type="number" id="quantity-mianbao" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(3, 1)">+</button>
+                </div>
                 <button onclick="addToCart(3, document.getElementById('quantity-mianbao').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-3">0</span></p>
             </div>
@@ -109,8 +144,12 @@
             <div>
                 <h3>巧克力</h3>
                 <p>价格: ￥5</p>
-                <label for="quantity-qiaokeli">数量:</label>
-                <input type="number" id="quantity-qiaokeli" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(4, -1)">-</button>
+                    <input type="number" id="quantity-qiaokeli" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(4, 1)">+</button>
+                </div>
                 <button onclick="addToCart(4, document.getElementById('quantity-qiaokeli').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-4">0</span></p>
             </div>
@@ -120,8 +159,12 @@
             <div>
                 <h3>饮料</h3>
                 <p>价格: ￥6</p>
-                <label for="quantity-yinliao">数量:</label>
-                <input type="number" id="quantity-yinliao" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(5, -1)">-</button>
+                    <input type="number" id="quantity-yinliao" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(5, 1)">+</button>
+                </div>
                 <button onclick="addToCart(5, document.getElementById('quantity-yinliao').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-5">0</span></p>
             </div>
@@ -131,8 +174,12 @@
             <div>
                 <h3>麻将辣条</h3>
                 <p>价格: ￥1.5</p>
-                <label for="quantity-yinliao">数量:</label>
-                <input type="number" id="quantity-majianglatiao" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(6, -1)">-</button>
+                    <input type="number" id="quantity-majianglatiao" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(6, 1)">+</button>
+                </div>
                 <button onclick="addToCart(6, document.getElementById('quantity-majianglatiao').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-6">0</span></p>
             </div>
@@ -142,8 +189,12 @@
             <div>
                 <h3>青梅绿茶</h3>
                 <p>价格: ￥3</p>
-                <label for="quantity-qmlc">数量:</label>
-                <input type="number" id="quantity-qmlc" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(7, -1)">-</button>
+                    <input type="number" id="quantity-qmlc" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(7, 1)">+</button>
+                </div>
                 <button onclick="addToCart(7, document.getElementById('quantity-qmlc').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-7">0</span></p>
             </div>
@@ -153,8 +204,12 @@
             <div>
                 <h3>优酸乳</h3>
                 <p>价格: ￥2</p>
-                <label for="quantity-ysr">数量:</label>
-                <input type="number" id="quantity-ysr" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(8, -1)">-</button>
+                    <input type="number" id="quantity-ysr" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(8, 1)">+</button>
+                </div>
                 <button onclick="addToCart(8, document.getElementById('quantity-ysr').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-8">0</span></p>
             </div>
@@ -164,8 +219,12 @@
             <div>
                 <h3>旺旺小馒头</h3>
                 <p>价格: ￥2.5</p>
-                <label for="quantity-wwxmt">数量:</label>
-                <input type="number" id="quantity-wwxmt" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(9, -1)">-</button>
+                    <input type="number" id="quantity-wwxmt" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(9, 1)">+</button>
+                </div>
                 <button onclick="addToCart(9, document.getElementById('quantity-wwxmt').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-9">0</span></p>
             </div>
@@ -175,8 +234,12 @@
             <div>
                 <h3>锅巴</h3>
                 <p>价格: ￥1</p>
-                <label for="quantity-gb">数量:</label>
-                <input type="number" id="quantity-gb" value="1" min="1">
+                <label>数量:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(10, -1)">-</button>
+                    <input type="number" id="quantity-gb" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="updateQuantity(10, 1)">+</button>
+                </div>
                 <button onclick="addToCart(10, document.getElementById('quantity-gb').value)">添加到购物车</button>
                 <p>已加入购物车数量: <span id="added-quantity-10">0</span></p>
             </div>
@@ -192,6 +255,7 @@
                 <th>单价</th>
                 <th>数量</th>
                 <th>总价</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody class="shopcar">
@@ -215,6 +279,31 @@
     </form>
     <script>
         let cart = [];
+
+        // 更新商品数量的函数
+        function updateQuantity(id, change) {
+            const inputElement = document.getElementById(`quantity-${getProductInputId(id)}`);
+            let newValue = parseInt(inputElement.value) + change;
+            if (newValue < 1) newValue = 1;
+            inputElement.value = newValue;
+        }
+
+        // 根据产品ID获取对应的input元素的id后缀
+        function getProductInputId(id) {
+            const products = [
+                { id: 1, inputId: 'latiao' },
+                { id: 2, inputId: 'gancuimian' },
+                { id: 3, inputId: 'mianbao' },
+                { id: 4, inputId: 'qiaokeli' },
+                { id: 5, inputId: 'yinliao' },
+                { id: 6, inputId: 'majianglatiao' },
+                { id: 7, inputId: 'qmlc' },
+                { id: 8, inputId: 'ysr' },
+                { id: 9, inputId: 'wwxmt' },
+                { id: 10, inputId: 'gb' }
+            ];
+            return products.find(p => p.id === id).inputId;
+        }
 
         function addToCart(id, quantity) {
             const products = [
@@ -243,6 +332,29 @@
             renderCart();
         }
 
+        // 从购物车中移除商品
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            // 更新已加入购物车数量显示
+            document.getElementById(`added-quantity-${id}`).textContent = '0';
+            renderCart();
+        }
+
+        // 更新购物车中商品数量
+        function updateCartItem(id, change) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) {
+                    removeFromCart(id);
+                    return;
+                }
+                // 更新已加入购物车数量显示
+                document.getElementById(`added-quantity-${id}`).textContent = item.quantity;
+                renderCart();
+            }
+        }
+
         function renderCart() {
             const tbody = document.querySelector('#cart tbody');
             tbody.innerHTML = '';
@@ -253,8 +365,13 @@
                 tr.innerHTML = `
                     <td>${item.name}</td>
                     <td>￥${item.price}</td>
-                    <td>${item.quantity}</td>
-                    <td>￥${item.price * item.quantity}</td>
+                    <td>
+                        <button onclick="updateCartItem(${item.id}, -1)">-</button>
+                        ${item.quantity}
+                        <button onclick="updateCartItem(${item.id}, 1)">+</button>
+                    </td>
+                    <td>￥${(item.price * item.quantity).toFixed(2)}</td>
+                    <td><button onclick="removeFromCart(${item.id})">删除</button></td>
                 `;
                 tbody.appendChild(tr);
                 totalPrice += item.price * item.quantity;
@@ -262,6 +379,7 @@
 
             document.getElementById('total-price').textContent = totalPrice.toFixed(2);
         }
+
         document.querySelector('form').addEventListener('submit', function () {
             document.getElementById('cartData').value = JSON.stringify(cart);
         });
